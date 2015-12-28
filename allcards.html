@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- Emoji One CSS: -->
+    <link rel="stylesheet" href="emojione.min.css" type="text/css" media="all" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+    <script src="emojione.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+
+    <script src="chosen.js" type="text/javascript"></script>
+
+    <script src="util.js" type="text/javascript"></script>
+
+    <script src="set30.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+$(document).ready(function() {
+        $(".convert-emoji").each(function() {
+            var original = $(this).html();
+            // use .shortnameToImage if only converting shortnames (for slightly better performance)
+            var converted = emojione.toImage(original);
+            $(this).html(converted);
+            });
+        });
+</script>
+
+ <h1>All Cards</h1>
+
+ <div id="allcards"></div>
+
+ <script type="text/javascript">
+   for (var i=0; i<set30.length; i++) {
+     var cdiv = $("<div>").addClass("card");
+     var card = set30[i];
+     card.shuffle();
+     for (var j=0; j<card.length; j++) {
+       cdiv.append(emojione.toImage(chosen[card[j]]));
+     }
+     $("#allcards").append(cdiv).clearQueue();
+   }
+ </script>
+
+
+
+</body>
+</html>
