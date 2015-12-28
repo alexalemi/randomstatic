@@ -4,15 +4,17 @@
     <!-- Emoji One CSS: -->
     <link rel="stylesheet" href="emojione.min.css" type="text/css" media="all" />
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 
-    <script src="emojione.min.js"></script>
+    <script src="emojione.min.js" type="text/javascript"></script>
 
     <link rel="stylesheet" href="custom.css" type="text/css" />
 
-    <script src="chosen.js"></script>
+    <script src="chosen.js" type="text/javascript"></script>
 
-    <script src="util.js"></script>
+    <script src="util.js" type="text/javascript"></script>
+
+    <script src="set30.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -40,23 +42,26 @@ $(document).ready(function() {
  </div>
 
 <script type="text/javascript">
-  var card1 = getRandomSubarray(chosen, 30);
-  var card2;
-  var out;
+  var card1pk = set30.randomPk();
+  var card2pk;
 
   do {
-    card2 = getRandomSubarray(chosen, 30);
-    out = notValid(card1, card2);
-  } while (!out['good']);
+    card2pk = set30.randomPk();
+  } while (card1pk == card2pk);
 
-  var ans = out['match'];
+  var card1 = set30[card1pk];
+  var card2 = set30[card2pk];
+  card1.shuffle();
+  card2.shuffle();
+
+  var ans = findMatch(card1, card2);
 
   for (i=0; i < card1.length; i++) {
-    $("#card1").append(emojione.toImage(card1[i]));
-    $("#card2").append(emojione.toImage(card2[i]));
+    $("#card1").append(emojione.toImage(chosen[card1[i]]));
+    $("#card2").append(emojione.toImage(chosen[card2[i]]));
   }
 
-  $("#ansinner").append(emojione.toImage(ans));
+  $("#ansinner").append(emojione.toImage(chosen[ans]));
 
 </script>
 
