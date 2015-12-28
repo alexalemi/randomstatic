@@ -1,0 +1,28 @@
+body {
+    font-size: 2em;
+}
+
+.card {
+    width: 10em;
+    border: 1px solid black;
+    padding: 0.3em;
+    margin: 1em;
+    float: left;
+}
+
+.ans {
+    border: 1px solid black;
+    width: 2em;
+    height: 2em;
+    padding: 1em;
+    float: left;
+}
+
+#ansinner {
+    display: none;
+}
+
+.ans:hover #ansinner {
+    display: block;
+}
+
